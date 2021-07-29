@@ -1,15 +1,32 @@
-table{
-    width: 100%;
+:host {
+  padding: 0 16px;
+
 }
 
-.filter-form{
+table {
+  width: 100%;
+}
+
+.filter-form {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+ 
+  padding: 4px 0 0 16px;
+  
+  &-input {
+    & + & {
+      margin-left: 16px;
+    }
+
+    &._search {
+      flex-grow: 1;
+      margin-right: 16px;
+    }
+  }
 }
-.paginator-container *{
-  width: 100%;
-}
-mat-form-field{
-  width: 20&;
-}
+
+
+
+
+

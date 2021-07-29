@@ -1,52 +1,42 @@
 <div class="header-container">
     <div class="filter-form" [formGroup]="filterForm">
-        <div class="filter-form-organization">
-            <mat-form-field>
-                <mat-label>{{VehicleTableColumnName.Organization}}</mat-label>
-                <mat-select formControlName="organization">
-                    <mat-option>--Усі--</mat-option>
-                    <mat-option *ngFor="let organization of vehicleTableLists.organization" [value]="organization">
-                        {{organization}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="filter-form-department">
-            <mat-form-field>
-                <mat-label>{{VehicleTableColumnName.Department}}</mat-label>
-                <mat-select formControlName="department">
-                    <mat-option>--Усі--</mat-option>
-                    <mat-option *ngFor="let department of vehicleTableLists.department" [value]="department">
-                        {{department}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="filter-form-contragent">
-            <mat-form-field>
-                <mat-label>{{VehicleTableColumnName.Contragent}}</mat-label>
-                <mat-select formControlName="contragent">
-                    <mat-option>--Усі--</mat-option>
-                    <mat-option *ngFor="let contragent of vehicleTableLists.contragent" [value]="contragent">
-                        {{contragent}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="filter-form-global">
-            <mat-form-field>
-                <mat-icon matPrefix>search</mat-icon>
-                <input matInput type="text" formControlName="global"
-                    placeholder="Пошук">
-            </mat-form-field>
-
-        </div>
+        <mat-form-field class="filter-form-input">
+            <mat-label>{{VehicleTableColumnName.Organization}}</mat-label>
+            <mat-select formControlName="organization">
+                <mat-option>--Усі--</mat-option>
+                <mat-option *ngFor="let organization of vehicleTableLists.organization" [value]="organization">
+                    {{organization}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="filter-form-input">
+            <mat-label>{{VehicleTableColumnName.Department}}</mat-label>
+            <mat-select formControlName="department">
+                <mat-option>--Усі--</mat-option>
+                <mat-option *ngFor="let department of vehicleTableLists.department" [value]="department">
+                    {{department}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="filter-form-input">
+            <mat-label>{{VehicleTableColumnName.Contragent}}</mat-label>
+            <mat-select formControlName="contragent">
+                <mat-option>--Усі--</mat-option>
+                <mat-option *ngFor="let contragent of vehicleTableLists.contragent" [value]="contragent">
+                    {{contragent}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="filter-form-input _search">
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput type="text" formControlName="global" placeholder="Пошук">
+        </mat-form-field>
         <div class="paginator-form">
-            <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <mat-paginator  [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
         </div>
     </div>
 
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
 
         <ng-container [matColumnDef]="VehicleTableColumnName.Vehicle">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Транспортний засіб </th>
