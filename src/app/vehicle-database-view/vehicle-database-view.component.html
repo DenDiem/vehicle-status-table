@@ -1,0 +1,91 @@
+<div class="header-container">
+    <div class="filter-form" [formGroup]="filterForm">
+        <div class="filter-form-organization">
+            <mat-form-field>
+                <mat-label>{{VehicleTableColumnName.Organization}}</mat-label>
+                <mat-select formControlName="organization">
+                    <mat-option>--Усі--</mat-option>
+                    <mat-option *ngFor="let organization of vehicleTableLists.organization" [value]="organization">
+                        {{organization}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="filter-form-department">
+            <mat-form-field>
+                <mat-label>{{VehicleTableColumnName.Department}}</mat-label>
+                <mat-select formControlName="department">
+                    <mat-option>--Усі--</mat-option>
+                    <mat-option *ngFor="let department of vehicleTableLists.department" [value]="department">
+                        {{department}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="filter-form-contragent">
+            <mat-form-field>
+                <mat-label>{{VehicleTableColumnName.Contragent}}</mat-label>
+                <mat-select formControlName="contragent">
+                    <mat-option>--Усі--</mat-option>
+                    <mat-option *ngFor="let contragent of vehicleTableLists.contragent" [value]="contragent">
+                        {{contragent}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="filter-form-global">
+            <mat-form-field>
+                <mat-icon matPrefix>search</mat-icon>
+                <input matInput type="text" formControlName="global"
+                    placeholder="Пошук">
+            </mat-form-field>
+
+        </div>
+        <div class="paginator-form">
+            <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <ng-container [matColumnDef]="VehicleTableColumnName.Vehicle">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Транспортний засіб </th>
+            <td mat-cell *matCellDef="let element"> {{element.Vehicle.name}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="VehicleTableColumnName.Organization">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Організація </th>
+            <td mat-cell *matCellDef="let element"> {{element.Vehicle.Organization?.name}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="VehicleTableColumnName.Department">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Департамент </th>
+            <td mat-cell *matCellDef="let element"> {{element.Vehicle.Department?.name}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="VehicleTableColumnName.Contragent">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Контрагент </th>
+            <td mat-cell *matCellDef="let element"> {{element.Vehicle.Contragent?.name}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="VehicleTableColumnName.Code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Код </th>
+            <td mat-cell *matCellDef="let element"> {{element?.code1c}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="VehicleTableColumnName.Aggregate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Причіп </th>
+            <td mat-cell *matCellDef="let element"> {{element.Aggregate?.name}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="VehicleTableColumnName.Drivers">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Водії </th>
+            <td mat-cell *matCellDef="let element">
+                <p *ngFor="let driver of element.Drivers">{{driver?.name}}</p>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>

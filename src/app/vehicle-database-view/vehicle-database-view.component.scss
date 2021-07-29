@@ -1,0 +1,15 @@
+table{
+    width: 100%;
+}
+
+.filter-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.paginator-container *{
+  width: 100%;
+}
+mat-form-field{
+  width: 20&;
+}
